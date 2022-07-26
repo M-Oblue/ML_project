@@ -2,7 +2,7 @@
 ml pipeline project
 
 ## Pre-Requisites:
-VSCode
+VSCode '\n'
 github account
 heroku account
 Git cli
