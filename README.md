@@ -1,8 +1,7 @@
-# ML_project
-ml pipeline project
-
+# Start_ML_project.
 ## Pre-Requisites:
-  VSCode 
-  github account
-  heroku account
-  Git cli
+
+1.[Github Account] : (https://github.com/M-Oblue/ML_project)
+2.[Heroku Account] : (https://dashboard.heroku.com/apps)
+3.[VS Code IDE] : (https://code.visualstudio.com/)
+4.[GIT] : (https://git-scm.com/downloads)
