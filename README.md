@@ -84,7 +84,7 @@ git log -1
 ## pre-requisites for setting up CI/CD pipeline in heroku
 
 1.heroku_email_id : askabhiornot@gmail.com
-2.heroku_api_key : 38eda17c-8a16-4057-b6e3-aa634a3bc6cd
+2.heroku_api_key : <>
 3.heroku_app_name : ml-cicd-project
 
 ## then create a Dockerfile and dockerignore file
@@ -113,7 +113,7 @@ docker ps
 ```
 docker stop <container_id>
 ```
-
+# github actions in main.yaml file inside .github/workflows
 
 
 
