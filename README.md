@@ -81,6 +81,41 @@ NOTE : to check the latest version of the project.
 ```
 git log -1
 ```
+## pre-requisites for setting up CI/CD pipeline in heroku
+
+1.heroku_email_id : askabhiornot@gmail.com
+2.heroku_api_key : 38eda17c-8a16-4057-b6e3-aa634a3bc6cd
+3.heroku_app_name : ml-cicd-project
+
+## then create a Dockerfile and dockerignore file
+
+## building the docker image
+NOTE : name of docker image must be in lowercase.
+```
+docker build -t <image_name>:<tagname> .
+```
+```
+eg : docker build -t ml-cicd-project:latest .
+```
+## to list docker images
+```
+docker images
+```
+## to run the docker image
+```
+docker run -p 5000:5000 -e PORT=5000 <image_id>
+```
+## to check running containers
+```
+docker ps 
+```
+## to stop container
+```
+docker stop <container_id>
+```
+
+
+
 
 
 
