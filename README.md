@@ -56,7 +56,7 @@ NOTE : to ignore a file or folder from git.
 git ignore <file_name>
 ```
 OR manually add file/folder to .gitignore file.
-```
+
 NOTE : to check the status of the git.
 ```
 git status
