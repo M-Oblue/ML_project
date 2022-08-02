@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return 'starting machine learning project'
+    return 'CI CD pipeline deployed'
 
 
 if __name__=='__main__':
