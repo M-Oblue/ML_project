@@ -24,6 +24,7 @@ step 3: creating conda environment
 ```
 conda create --name <env_name> python==3.7
 ```
+OR
 ```
 conda create -p <env_name> python==3.7 -y
 ```
@@ -33,6 +34,7 @@ step 4:
 ```
 conda activate <env_name> 
 ```
+OR
 ```
 conda activate <env_name/> 
 ```
@@ -41,7 +43,44 @@ step 5: installing requirements.txt
 ```
 pip install -r requirements.txt 
 ```
-
+step 6: adding changes to git.
+```
+git add .
+```
+OR
+```
+git add <file_name>
+```
+NOTE : to ignore a file or folder from git.
+```
+git ignore <file_name>
+```
+OR manually add file/folder to .gitignore file.
+```
+NOTE : to check the status of the git.
+```
+git status
+```
+NOTE : to commit the changes.
+```
+git commit -m "message"
+```
+NOTE : to push the changes to github.
+```
+git push origin main
+```
+NOTE : to check all versions/commits of the project.
+```
+git log
+```
+OR for compact form of version/commit history.
+```
+git log --graph --all --decorate --oneline
+```
+NOTE : to check the latest version of the project.
+```
+git log -1
+```
 
 
 
