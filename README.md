@@ -115,7 +115,12 @@ docker stop <container_id>
 ```
 # github actions in main.yaml file inside .github/workflows
 
-
+```
+python setup.py install
+```
+## for correct installation we need both custom and external packages to be installed.
+## Since >pip install requirements.txt, installs external packages, so we just add -e . to it to install our custom packages as well.
+## not using -e . will install only external packages.
 
 
 
