@@ -126,3 +126,7 @@ python setup.py install
 ```
 pip install ipykernel
 ```
+## installing YAML package for YAML file handling.
+```
+pip install PyYAML
+```
