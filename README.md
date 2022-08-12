@@ -122,8 +122,7 @@ python setup.py install
 ## Since >pip install requirements.txt, installs external packages, so we just add -e . to it to install our custom packages as well.
 ## not using -e . will install only external packages.
 
-
-
-
-
-
+## installing interactive python kernel for jupyter notebooks.
+```
+pip install ipykernel
+```
