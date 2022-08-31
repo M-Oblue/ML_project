@@ -6,4 +6,6 @@ pandas
 ipykernel
 PyYAML
 evidently
+matplotlib
+dill
 -e .

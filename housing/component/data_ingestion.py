@@ -16,6 +16,7 @@ class DataIngestion:
     def __init__(self, data_ingestion_config:DataIngestionConfig):
         try:
             logging.info(f"{'='*20}Data ingestion log started.{'='*20}")
+            
             self.data_ingestion_config = data_ingestion_config
             
         except Exception as e:
@@ -107,10 +108,10 @@ class DataIngestion:
                 strat_test_set.to_csv(test_file_path, index=False)
             
             data_ingestion_artifact = DataIngestionArtifact(train_file_path=train_file_path,
-                                test_file_path=test_file_path,
-                                is_ingested=True,
-                                message=f"Data ingestion completed successfully."
-                                )
+                test_file_path=test_file_path,
+                is_ingested=True,
+                message=f"Data ingestion completed successfully."
+            )
             
             logging.info(f"Data Ingestion Artifact : [{data_ingestion_artifact}]")
             return data_ingestion_artifact
@@ -127,9 +128,5 @@ class DataIngestion:
             raise HousingException(e,sys) from e
         
         
-        
     def __del__(self):
         logging.info(f"{'='*20}Data ingestion log completed.{'='*20} \n\n")
-        
-        
-        
