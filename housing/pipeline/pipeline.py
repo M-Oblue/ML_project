@@ -25,22 +25,21 @@ from housing.constants import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
 
 
 Experiment = namedtuple("Experiment",["experiment_id","initialization_timestamp","artifact_time_stamp",
-"running_status","start_time","stop_time","execution_time","message","experiment_file_path","accuracy","is_model_accepted"])
+                                    "running_status","start_time","stop_time","execution_time",
+                                    "message","experiment_file_path","accuracy","is_model_accepted"])
 
 
-config = Configuration()
-os.makedirs(config.training_pipeline_config.artifact_dir,exist_ok=True)
 
-class Pipeline:
-    
+class Pipeline(Thread):
     experiment:Experiment=Experiment(*([None]*11))
-    experiment_file_path = os.path.join(config.training_pipeline_config.artifact_dir,
-    EXPERIMENT_DIR_NAME,EXPERIMENT_FILE_NAME)
+    experiment_file_path = None 
     
-    def __init__(self,config: Configuration = Configuration())->None:
+    def __init__(self, config: Configuration) -> None:
         try:
+            os.makedirs(config.training_pipeline_config.artifact_dir,exist_ok=True)
+            Pipeline.experiment_file_path = os.path.join(config.training_pipeline_config.artifact_dir, EXPERIMENT_DIR_NAME,EXPERIMENT_FILE_NAME)
+            super().__init__(daemon=False, name='pipeline')
             self.config = config
-            
         except Exception as e :
             raise HousingException(e,sys) from e
         
@@ -119,17 +118,17 @@ class Pipeline:
 
             
             Pipeline.experiment = Experiment(experiment_id=experiment_id,
-            initialization_timestamp=self.config.time_stamp,
-            artifact_time_stamp=self.config.time_stamp,
-            running_status=True,
-            start_time=datetime.now(),
-            stop_time=None,
-            execution_time=None,
-            experiment_file_path=Pipeline.experiment_file_path,
-            is_model_accepted=None,
-            message="Pipeline has been started.",
-            accuracy=None,
-            )
+                                            initialization_timestamp=self.config.time_stamp,
+                                            artifact_time_stamp=self.config.time_stamp,
+                                            running_status=True,
+                                            start_time=datetime.now(),
+                                            stop_time=None,
+                                            execution_time=None,
+                                            experiment_file_path=Pipeline.experiment_file_path,
+                                            is_model_accepted=None,
+                                            message="Pipeline has been started.",
+                                            accuracy=None,
+                                            )
             logging.info(f"Pipeline experiment: {Pipeline.experiment}")
 
             self.save_experiment()
@@ -157,17 +156,17 @@ class Pipeline:
 
             stop_time= datetime.now()
             Pipeline.experiment = Experiment(experiment_id=Pipeline.experiment.experiment_id,
-            initialization_timestamp=self.config.time_stamp,
-            artifact_time_stamp=self.config.time_stamp,
-            running_status=False,
-            start_time=Pipeline.experiment.start_time,
-            stop_time=stop_time,
-            execution_time=stop_time-Pipeline.experiment.start_time,
-            message="Pipeline has been completed.",
-            experiment_file_path=Pipeline.experiment_file_path,
-            is_model_accepted=model_evaluation_artifact.is_model_accepted,
-            accuracy=model_trainer_artifact.model_accuracy
-            )
+                                            initialization_timestamp=self.config.time_stamp,
+                                            artifact_time_stamp=self.config.time_stamp,
+                                            running_status=False,
+                                            start_time=Pipeline.experiment.start_time,
+                                            stop_time=stop_time,
+                                            execution_time=stop_time-Pipeline.experiment.start_time,
+                                            message="Pipeline has been completed.",
+                                            experiment_file_path=Pipeline.experiment_file_path,
+                                            is_model_accepted=model_evaluation_artifact.is_model_accepted,
+                                            accuracy=model_trainer_artifact.model_accuracy
+                                            )
             logging.info(f"Pipeline experiment: {Pipeline.experiment}")
             self.save_experiment()
         except Exception as e:
@@ -203,7 +202,7 @@ class Pipeline:
             raise HousingException(e,sys) from e
         
     @classmethod
-    def get_experiments_status(cls,limit:int=5)->pd.DataFrame:
+    def get_experiments_status(cls,limit:int=5) -> pd.DataFrame:
         try:
             if os.path.exists(Pipeline.experiment_file_path):
                 df= pd.read_csv(Pipeline.experiment_file_path)
